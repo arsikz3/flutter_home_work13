@@ -2,7 +2,7 @@ import 'package:flutter_home_work13_provider/models/category.dart';
 import 'package:flutter_home_work13_provider/notifiers/init_change_notifier.dart';
 import 'package:flutter_home_work13_provider/repository/product_repository.dart';
 import 'package:flutter_home_work13_provider/widgets/categories_item.dart';
-import 'package:flutter_home_work13_provider/widgets/category_details.dart';
+import 'package:flutter_home_work13_provider/widgets/category_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
