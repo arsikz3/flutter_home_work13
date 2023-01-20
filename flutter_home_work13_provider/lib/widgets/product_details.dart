@@ -34,7 +34,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   itemCount: product.images.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(5),
                       // child: Container(
                       //   height: 80,
                       //   width: 80,
