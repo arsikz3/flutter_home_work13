@@ -34,20 +34,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   itemCount: product.images.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.all(5),
-                      // child: Container(
-                      //   height: 80,
-                      //   width: 80,
-                      //   color: Colors.green[index * 100],
-                      // ),
-
-                      // child: SizedBox(
-                      //   height: MediaQuery.of(context).size.height / 3,
-                      //   child: Image.asset(product.images[index],
-                      //       fit: BoxFit.fitWidth,
-                      //       width: MediaQuery.of(context).size.width),
-                      // ),
-
+                      padding: const EdgeInsets.all(5),
                       child: Card(
                         child: Image.network(product.images[index],
                             fit: BoxFit.fitWidth,
@@ -56,15 +43,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     );
                   }),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 8.0),
-            //   child: SizedBox(
-            //     height: MediaQuery.of(context).size.height / 3,
-            //     child: Image.asset(product.images[1],
-            //         fit: BoxFit.fitWidth,
-            //         width: MediaQuery.of(context).size.width),
-            //   ),
-            // ),
+
             Padding(
                 padding: const EdgeInsets.only(
                   top: 40.0,
