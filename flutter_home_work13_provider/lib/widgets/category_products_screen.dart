@@ -54,12 +54,17 @@ class CategoryDetailScreen extends StatelessWidget {
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => ProductDetailsScreen(
-                                  product: products,
+                                  builder: (_) =>
+                                      ChangeNotifierProvider<AppCountState>(
+                                          create: (_) => AppCountState(),
+                                          child: Consumer<AppCountState>(
+                                            builder: (context, state, child) =>
+                                                ProductDetailsScreen(
+                                              product: products,
 
-                                  // ratingChanged: (r) => ratingChanged(speaker, r),
-                                ),
-                              ));
+                                              // ratingChanged: (r) => ratingChanged(speaker, r),
+                                            ),
+                                          ))));
                             },
                             title: Text(products!.title),
                             subtitle: Text(products!.description),

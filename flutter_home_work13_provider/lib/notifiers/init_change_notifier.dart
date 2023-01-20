@@ -109,3 +109,17 @@ class RatingAppState with ChangeNotifier {
     // notifyListeners();
   }
 }
+
+class AppCountState with ChangeNotifier {
+  int counter = 0;
+
+  void increment() {
+    counter++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    counter--;
+    notifyListeners();
+  }
+}
