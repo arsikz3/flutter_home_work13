@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_home_work13_provider/models/category.dart';
+import 'package:flutter_home_work13_provider/models/order.dart';
 import 'package:flutter_home_work13_provider/models/product.dart';
-import 'package:flutter_home_work13_provider/models/speaker.dart';
-import 'package:flutter_home_work13_provider/models/talk.dart';
 import 'package:flutter_home_work13_provider/repository/category_repository.dart';
+import 'package:flutter_home_work13_provider/repository/order_repository.dart';
 import 'package:flutter_home_work13_provider/repository/product_repository.dart';
-import 'package:flutter_home_work13_provider/repository/speakers_repository.dart';
-import 'package:flutter_home_work13_provider/repository/talks_repository.dart';
 import 'package:flutter_home_work13_provider/models/filter.dart';
 import 'package:flutter_home_work13_provider/models/app_tab.dart';
+
+class OrderAppState with ChangeNotifier {
+  final OrderRepository _ordersRepositorys;
+  List<Order> orders = [];
+
+  OrderAppState(this._ordersRepositorys);
+
+  void getOrders() async {
+    orders = await _ordersRepositorys.loadOrder();
+    notifyListeners();
+  }
+
+  Future<List<Order>> loadOrders() async {
+    return await _ordersRepositorys.loadOrder();
+  }
+}
 
 class ProductAppState with ChangeNotifier {
   final ProductRepository _productsRepository;
   List<Product> products = [];
 
   bool get isLoaded => products.isNotEmpty;
-  ProductAppState(this._productsRepository) {
-    // _getProducts();
-  }
+  ProductAppState(this._productsRepository);
 
   void getProducts() async {
     products = await _productsRepository.loadProducts();
@@ -31,34 +43,20 @@ class ProductAppState with ChangeNotifier {
 }
 
 class RatingAppState with ChangeNotifier {
-  final SpeakersRepository _speakersRepository;
-  final TalksRepository _talksRepository;
+  final OrderRepository _ordersRepository;
   final CategoriesRepository _categoriesRepository;
-  List<ScheduledTalk> talks = [];
-  List<Speaker> speakers = [];
+  List<Order> orders = [];
   List<Category> categories = [];
   List<Product> products = [];
 
   Filter? activeFilter;
-  int activeTabIndex = AppTab.speakers.index;
+  int activeTabIndex = AppTab.categories.index;
 
-  bool get isLoaded => talks.isNotEmpty && speakers.isNotEmpty;
+  bool get isLoaded => categories.isNotEmpty && categories.isNotEmpty;
 
-  List<Speaker> get filteredSpeakers => speakers.where((s) {
-        if (activeFilter == Filter.top) {
-          return s.rating == 5;
-        } else if (activeFilter == Filter.unrated) {
-          return s.rating == null;
-        } else {
-          return true;
-        }
-      }).toList();
-
-  RatingAppState(this._speakersRepository, this._talksRepository,
-      this._categoriesRepository) {
-    _initSpeakers();
-    _initTalks();
+  RatingAppState(this._categoriesRepository, this._ordersRepository) {
     _initCategories();
+    _initOrders();
   }
 
   void _initCategories() async {
@@ -66,25 +64,8 @@ class RatingAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  void _initSpeakers() async {
-    speakers = await _speakersRepository.loadSpeakers();
-    notifyListeners();
-  }
-
-  void _initTalks() async {
-    talks = await _talksRepository.loadTalks();
-    notifyListeners();
-  }
-
-  void updateSpeaker(Speaker speaker) {
-    _speakersRepository.saveSpeaker(speaker);
-    speakers = speakers.map((s) => s.id == speaker.id ? speaker : s).toList();
-    notifyListeners();
-  }
-
-  void updateTalk(ScheduledTalk talk) {
-    _talksRepository.saveTalk(talk);
-    talks = talks.map((t) => t.id == talk.id ? talk : t).toList();
+  void _initOrders() async {
+    orders = await _ordersRepository.loadOrder();
     notifyListeners();
   }
 
@@ -107,6 +88,11 @@ class RatingAppState with ChangeNotifier {
     products = await _categoriesRepository.loadCategyProducts(id);
     return products;
     // notifyListeners();
+  }
+
+  void addOrder(Product product, int quant) {
+    _ordersRepository.saveToOrder(product, quant);
+    notifyListeners();
   }
 }
 

@@ -1,8 +1,5 @@
 import 'package:flutter_home_work13_provider/models/product.dart';
-import 'package:flutter_home_work13_provider/models/speaker.dart';
-import 'package:flutter_home_work13_provider/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../notifiers/init_change_notifier.dart';
@@ -46,7 +43,6 @@ class ProductDetailsScreen extends StatelessWidget {
                     );
                   }),
             ),
-
             Padding(
                 padding: const EdgeInsets.only(
                   top: 40.0,
@@ -67,8 +63,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
-                    Text('Price: ',
-                        style: const TextStyle(
+                    const Text('Price: ',
+                        style: TextStyle(
                           fontSize: 20.0,
                         )),
                     Text(product.price.toString(),
@@ -77,15 +73,6 @@ class ProductDetailsScreen extends StatelessWidget {
                         )),
                   ],
                 )),
-            // RatingBar.builder(
-            //     initialRating: speaker.rating?.toDouble() ?? 0,
-            //     direction: Axis.horizontal,
-            //     allowHalfRating: true,
-            //     itemCount: 5,
-            //     itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-            //     itemBuilder: (context, index) =>
-            //         Utils.getRatingIcon(index + 1) ?? const SizedBox.shrink(),
-            //     onRatingUpdate: (rating) => ratingChanged(rating.toInt())),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -106,23 +93,37 @@ class ProductDetailsScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: FloatingActionButton(
-              heroTag: "btn1",
-              onPressed: context.read<AppCountState>().increment,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
+          FloatingActionButton(
+            heroTag: "btn1",
+            onPressed: () {
+              context.read<AppCountState>().increment();
+            },
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: FloatingActionButton(
-              heroTag: "btn2",
-              onPressed: context.read<AppCountState>().decrement,
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
-            ),
+          const SizedBox(
+            width: 15,
+          ),
+          FloatingActionButton(
+            heroTag: "btn2",
+            onPressed: context.read<AppCountState>().decrement,
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          FloatingActionButton.extended(
+            heroTag: "btn3",
+            onPressed: () {
+              context
+                  .read<RatingAppState>()
+                  .addOrder(product, context.read<AppCountState>().counter);
+
+              Navigator.of(context).pop();
+            },
+            tooltip: 'Добавить в корзину',
+            label: const Text('Добавить в корзину'),
           ),
         ],
       ),

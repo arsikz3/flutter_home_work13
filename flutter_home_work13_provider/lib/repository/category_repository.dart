@@ -22,6 +22,7 @@ class ConstCategoryRepository extends CategoriesRepository {
     try {
       final Response res = await Dio().get(Endpoints.getCategories);
 
+      // почему-то не заработало
       // List<Category> cats = await res.data.map((cat) {
       //   return Category.fromJson(cat);
       // }).toList();
@@ -30,7 +31,6 @@ class ConstCategoryRepository extends CategoriesRepository {
         categories.add(Category.fromJson(element));
       }
     } catch (e) {
-      print(e.toString());
       rethrow;
     }
     return categories;
@@ -47,7 +47,6 @@ class ConstCategoryRepository extends CategoriesRepository {
         products.add(Product.fromJson(element));
       }
     } catch (e) {
-      print(e.toString());
       rethrow;
     }
     return products;

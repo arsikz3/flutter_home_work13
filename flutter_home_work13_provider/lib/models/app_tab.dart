@@ -1,1 +1,1 @@
-enum AppTab { speakers, talks, categories }
+enum AppTab { categories, orders }

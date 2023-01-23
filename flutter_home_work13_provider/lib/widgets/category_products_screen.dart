@@ -2,9 +2,7 @@ import 'package:flutter_home_work13_provider/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_home_work13_provider/models/product.dart';
 import 'package:flutter_home_work13_provider/notifiers/init_change_notifier.dart';
-import 'package:flutter_home_work13_provider/repository/product_repository.dart';
 import 'package:flutter_home_work13_provider/widgets/product_details.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
@@ -54,24 +52,31 @@ class CategoryDetailScreen extends StatelessWidget {
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) =>
-                                      ChangeNotifierProvider<AppCountState>(
-                                          create: (_) => AppCountState(),
-                                          child: Consumer<AppCountState>(
-                                            builder: (context, state, child) =>
-                                                ProductDetailsScreen(
-                                              product: products,
+                                builder: (_) =>
+                                    // ProductDetailsScreen(
+                                    //       product: products,
+                                    //     )
 
-                                              // ratingChanged: (r) => ratingChanged(speaker, r),
-                                            ),
-                                          ))));
+                                    MultiProvider(
+                                  providers: [
+                                    ChangeNotifierProvider<AppCountState>(
+                                      create: (_) => AppCountState(),
+                                    ),
+                                  ],
+                                  child: ProductDetailsScreen(
+                                    product: products,
+
+                                    // ratingChanged: (r) => ratingChanged(speaker, r),
+                                  ),
+                                ),
+                              ));
                             },
                             title: Text(products!.title),
-                            subtitle: Text(products!.description),
+                            subtitle: Text(products.description),
                             // leading: Image.asset(products.images[1],
                             //     fit: BoxFit.fitWidth,
                             //     width: MediaQuery.of(context).size.width),
-                            trailing: Text(products!.price.toString()),
+                            trailing: Text(products.price.toString()),
                           ),
                         );
                       });

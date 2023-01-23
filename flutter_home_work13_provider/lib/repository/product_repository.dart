@@ -17,20 +17,13 @@ class ConstProductRepository extends ProductRepository {
   @override
   Future<List<Product>> loadProducts() async {
     List<Product> products = [];
-    print('loadProducts');
     try {
       final Response res = await Dio().get(Endpoints.getProducts);
-      print(res.data);
-      // List<Category> cats = await res.data.map((cat) {
-      //   return Category.fromJson(cat);
-      // }).toList();
 
       for (var element in res.data) {
         products.add(Product.fromJson(element));
-        print(Product.fromJson(element));
       }
     } catch (e) {
-      print(e.toString());
       rethrow;
     }
     return products;
@@ -39,20 +32,13 @@ class ConstProductRepository extends ProductRepository {
   @override
   Future<List<Product>> loadCategoryProducts(int id) async {
     List<Product> products = [];
-    print('loadProducts');
     try {
       final Response res = await Dio().get(Endpoints.getProducts);
-      print(res.data);
-      // List<Category> cats = await res.data.map((cat) {
-      //   return Category.fromJson(cat);
-      // }).toList();
 
       for (var element in res.data) {
         products.add(Product.fromJson(element));
-        print(Product.fromJson(element));
       }
     } catch (e) {
-      print(e.toString());
       rethrow;
     }
     return products;
