@@ -5,7 +5,6 @@ import 'package:flutter_home_work13_provider/models/product.dart';
 import 'package:flutter_home_work13_provider/repository/category_repository.dart';
 import 'package:flutter_home_work13_provider/repository/order_repository.dart';
 import 'package:flutter_home_work13_provider/repository/product_repository.dart';
-import 'package:flutter_home_work13_provider/models/filter.dart';
 import 'package:flutter_home_work13_provider/models/app_tab.dart';
 
 class OrderAppState with ChangeNotifier {
@@ -49,7 +48,6 @@ class RatingAppState with ChangeNotifier {
   List<Category> categories = [];
   List<Product> products = [];
 
-  Filter? activeFilter;
   int activeTabIndex = AppTab.categories.index;
 
   bool get isLoaded => categories.isNotEmpty && categories.isNotEmpty;
@@ -66,11 +64,6 @@ class RatingAppState with ChangeNotifier {
 
   void _initOrders() async {
     orders = await _ordersRepository.loadOrder();
-    notifyListeners();
-  }
-
-  void updateFilter(Filter filter) {
-    activeFilter = filter;
     notifyListeners();
   }
 
