@@ -15,5 +15,4 @@ class Endpoints {
 
   static const String getCategories = "$baseUrl/api/v1/categories";
   static const String getProducts = "$baseUrl/api/v1/products";
-  // https://api.escuelajs.co/api/v1/products/?categoryId=1
 }
