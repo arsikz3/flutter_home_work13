@@ -30,7 +30,8 @@ class CategoryDetailScreen extends StatelessWidget {
       body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: FutureBuilder(
-            future: context.read<RatingAppState>().getCatProducts(category.id),
+            future:
+                context.read<ECommerceAppState>().getCatProducts(category.id),
             builder: (
               BuildContext context,
               AsyncSnapshot<List<Product>> snapshot,

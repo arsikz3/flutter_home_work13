@@ -41,7 +41,7 @@ class ProductAppState with ChangeNotifier {
   }
 }
 
-class RatingAppState with ChangeNotifier {
+class ECommerceAppState with ChangeNotifier {
   final OrderRepository _ordersRepository;
   final CategoriesRepository _categoriesRepository;
   List<Order> orders = [];
@@ -52,7 +52,7 @@ class RatingAppState with ChangeNotifier {
 
   bool get isLoaded => categories.isNotEmpty && categories.isNotEmpty;
 
-  RatingAppState(this._categoriesRepository, this._ordersRepository) {
+  ECommerceAppState(this._categoriesRepository, this._ordersRepository) {
     _initCategories();
     _initOrders();
   }

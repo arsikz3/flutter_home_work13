@@ -117,7 +117,7 @@ class ProductDetailsScreen extends StatelessWidget {
             heroTag: "btn3",
             onPressed: () {
               context
-                  .read<RatingAppState>()
+                  .read<ECommerceAppState>()
                   .addOrder(product, context.read<AppCountState>().counter);
 
               Navigator.of(context).pop();

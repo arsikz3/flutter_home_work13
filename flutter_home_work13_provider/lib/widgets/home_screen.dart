@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RatingAppState>(builder: (context, state, child) {
+    return Consumer<ECommerceAppState>(builder: (context, state, child) {
       if (!state.isLoaded) {
         return const LoadingIndicator();
       } else {
