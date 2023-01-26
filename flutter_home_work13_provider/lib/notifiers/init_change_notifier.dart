@@ -87,6 +87,11 @@ class ECommerceAppState with ChangeNotifier {
     _ordersRepository.saveToOrder(product, quant);
     notifyListeners();
   }
+
+  void removeOrder(int index) {
+    _ordersRepository.removeOrder(index);
+    notifyListeners();
+  }
 }
 
 class AppCountState with ChangeNotifier {

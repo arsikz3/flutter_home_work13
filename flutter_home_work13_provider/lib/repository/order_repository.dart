@@ -6,6 +6,7 @@ abstract class OrderRepository {
 
   Future<List<Order>> loadOrder();
   Future<void> saveToOrder(Product product, int quant);
+  Future<void> removeOrder(int index);
 }
 
 class ConstOrderRepository extends OrderRepository {
@@ -23,6 +24,12 @@ class ConstOrderRepository extends OrderRepository {
     Order order = Order(quant: quant, product: product);
     _allOrders.add(order);
 
+    return;
+  }
+
+  @override
+  Future<void> removeOrder(int index) async {
+    _allOrders.removeAt(index);
     return;
   }
 }
