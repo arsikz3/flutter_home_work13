@@ -14,22 +14,15 @@ class OrderList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ECommerceAppState>(
-      builder: (context, state, child) {
-        return ListView.builder(
-          // itemCount: orders.length,
-          itemCount: state.orders.length,
-          itemBuilder: (BuildContext context, int index) {
-            // final order = orders[index];
-            // final order = orders[index];
-            final order = state.orders[index];
-            return OrderItem(
-                order: order,
-                onTap: () {
-                  orders.removeAt(index);
-                });
-          },
-        );
+    return ListView.builder(
+      itemCount: orders.length,
+      itemBuilder: (BuildContext context, int index) {
+        final order = orders[index];
+        return OrderItem(
+            order: order,
+            onTap: () {
+              context.read<ECommerceAppState>().removeOrder(index);
+            });
       },
     );
   }
