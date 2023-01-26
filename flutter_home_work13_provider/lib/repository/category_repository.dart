@@ -21,8 +21,8 @@ class ConstCategoryRepository extends CategoriesRepository {
       final Response res = await Dio().get(Endpoints.getCategories);
 
       // почему-то не заработало, хотелось добавить в List категории
-      // List<Category> cats = await res.data.map((cat) {
-      //   return Category.fromJson(cat);
+      // categories = res.data.map((data) {
+      //   return Category.fromJson(data);
       // }).toList();
 
       for (var element in res.data) {
