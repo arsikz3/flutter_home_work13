@@ -19,20 +19,17 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.category),
-              onPressed: () {
-                // print(state.products[1].category.toString());
-              },
+              onPressed: () {},
             ),
             title: const Text('E-Commerce'),
           ),
           body: state.activeTabIndex == AppTab.categories.index
               ? CategoriesList(
                   categories: state.categories,
-                  onTalkTapped: () {},
+                  onTapped: () {},
                 )
               : OrderList(
                   orders: state.orders,
-                  // onTalkTapped: () {},
                 ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state.activeTabIndex,

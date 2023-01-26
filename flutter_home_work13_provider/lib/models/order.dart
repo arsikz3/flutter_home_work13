@@ -1,4 +1,3 @@
-// Model of Product
 import 'package:flutter_home_work13_provider/models/product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

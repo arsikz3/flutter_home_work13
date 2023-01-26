@@ -7,22 +7,14 @@ import 'package:provider/provider.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   final Category category;
-  // final Function(int) ratingChanged;
 
   const CategoryDetailScreen({
     required this.category,
-    // required this.ratingChanged,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return Consumer<RatingAppState>(builder: (context, state, child) {
-    // state.getCategoryProducts(category.id);
-    // <List<Product>> products =
-    //     context.read<RatingAppState>().getCatProducts(category.id);
-    // print(products);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Список товаров'),
@@ -47,18 +39,11 @@ class CategoryDetailScreen extends StatelessWidget {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
                         late Product? products = snapshot.data?[index];
-                        // return Text(products!.title);
-                        // return ProductDetailsScreen(product: products!);
                         return Card(
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) =>
-                                    // ProductDetailsScreen(
-                                    //       product: products,
-                                    //     )
-
-                                    MultiProvider(
+                                builder: (_) => MultiProvider(
                                   providers: [
                                     ChangeNotifierProvider<AppCountState>(
                                       create: (_) => AppCountState(),
@@ -66,25 +51,16 @@ class CategoryDetailScreen extends StatelessWidget {
                                   ],
                                   child: ProductDetailsScreen(
                                     product: products,
-
-                                    // ratingChanged: (r) => ratingChanged(speaker, r),
                                   ),
                                 ),
                               ));
                             },
                             title: Text(products!.title),
                             subtitle: Text(products.description),
-                            // leading: Image.asset(products.images[1],
-                            //     fit: BoxFit.fitWidth,
-                            //     width: MediaQuery.of(context).size.width),
                             trailing: Text(products.price.toString()),
                           ),
                         );
                       });
-                  // return Text(snapshot.data.toString(),
-                  //     style: const TextStyle(
-                  //         color: Colors.cyan, fontSize: 36));
-
                 } else {
                   return const Text('Empty data');
                 }
@@ -92,16 +68,7 @@ class CategoryDetailScreen extends StatelessWidget {
                 return Text('State: ${snapshot.connectionState}');
               }
             },
-            // return ListView.builder(
-            //     shrinkWrap: true,
-            //     itemCount: state.products.length,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       final products = state.products[index];
-
-            //       return Text(products.title);
-            //     });
           )),
     );
-    // });
   }
 }

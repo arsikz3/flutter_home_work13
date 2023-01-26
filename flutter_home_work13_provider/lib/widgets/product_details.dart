@@ -6,11 +6,9 @@ import '../notifiers/init_change_notifier.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
-  // final Function(int) ratingChanged;
 
   const ProductDetailsScreen({
     required this.product,
-    // required this.ratingChanged,
     Key? key,
   }) : super(key: key);
 
@@ -44,33 +42,45 @@ class ProductDetailsScreen extends StatelessWidget {
                   }),
             ),
             Padding(
-                padding: const EdgeInsets.only(
-                  top: 40.0,
+              padding: const EdgeInsets.only(
+                top: 40.0,
+              ),
+              child: Center(
+                child: Text(
+                  product.title,
+                  style: const TextStyle(
+                    fontSize: 30.0,
+                  ),
                 ),
-                child: Center(
-                    child: Text(product.title,
-                        style: const TextStyle(
-                          fontSize: 30.0,
-                        )))),
+              ),
+            ),
             Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Center(
-                    child: Text(product.description,
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                        )))),
+              padding: const EdgeInsets.all(12.0),
+              child: Center(
+                child: Text(
+                  product.description,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                  ),
+                ),
+              ),
+            ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
-                    const Text('Price: ',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                        )),
-                    Text(product.price.toString(),
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                        )),
+                    const Text(
+                      'Price: ',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                    Text(
+                      product.price.toString(),
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
                   ],
                 )),
             Center(

@@ -7,14 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesList extends StatelessWidget {
-  // final List<ScheduledTalk> categories;
   final List<Category> categories;
-  // final Function(ScheduledTalk) onTalkTapped;
-  final Function onTalkTapped;
+  final Function onTapped;
 
   const CategoriesList({
     required this.categories,
-    required this.onTalkTapped,
+    required this.onTapped,
     Key? key,
   }) : super(key: key);
 
@@ -39,12 +37,11 @@ class CategoriesList extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => CategoryDetailScreen(
                     category: cat,
-                    // ratingChanged: (r) => ratingChanged(speaker, r),
                   ),
                 ));
               },
             ),
-          ), //ChangeNotifierProvider
+          ),
         );
       },
     );

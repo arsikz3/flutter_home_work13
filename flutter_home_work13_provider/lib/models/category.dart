@@ -1,4 +1,3 @@
-// import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category.freezed.dart';
@@ -16,23 +15,3 @@ class Category with _$Category {
   factory Category.fromJson(Map<String, dynamic> json) =>
       _$CategoryFromJson(json);
 }
-
-
-
-
-/*
-class Category {
-  Category({
-    required this.id,
-    required this.name,
-    required this.image,
-
-  });
-
-  int id;
-  String name;
-  String image;
-  DateTime creationAt;
-  DateTime updatedAt;
-}
-*/
